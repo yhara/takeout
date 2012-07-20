@@ -1,0 +1,27 @@
+h1 Listing commits
+
+table
+  tr
+    th Key
+    th Log
+    th Diff
+    th Status
+    th Commited at
+    th
+    th
+    th
+
+  - @commits.each do |commit|
+    tr
+      td = commit.key
+      td = commit.log
+      td = commit.diff
+      td = commit.status
+      td = commit.commited_at
+      td = link_to 'Show', commit
+      td = link_to 'Edit', edit_commit_path(commit)
+      td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete
+
+br
+
+= link_to 'New Commit', new_commit_path

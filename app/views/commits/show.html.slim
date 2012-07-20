@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Key:
+  = @commit.key
+p
+  strong Log:
+  = @commit.log
+p
+  strong Diff:
+  = @commit.diff
+p
+  strong Status:
+  = @commit.status
+p
+  strong Commited at:
+  = @commit.commited_at
+
+= link_to 'Edit', edit_commit_path(@commit)
+'|
+= link_to 'Back', commits_path

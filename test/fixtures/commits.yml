@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  key: MyString
+  log: MyString
+  diff: MyString
+  status: MyString
+  commited_at: 2012-07-20 19:13:26
+
+two:
+  key: MyString
+  log: MyString
+  diff: MyString
+  status: MyString
+  commited_at: 2012-07-20 19:13:26

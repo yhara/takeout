@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong User:
+  = @note.user_id
+p
+  strong Commit:
+  = @note.commit_id
+p
+  strong Body:
+  = @note.body
+
+= link_to 'Edit', edit_note_path(@note)
+'|
+= link_to 'Back', notes_path
