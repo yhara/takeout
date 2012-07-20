@@ -39,10 +39,10 @@ gem 'jquery-rails'
 
 gem "slim-rails"
 gem "sqlite3", :group => [:development, :test]
-group :production do
-  gem "pg"
-  gem "therubyracer-heroku", "0.8.1.pre3"
-end
+#group :production do
+#  gem "pg"
+#  gem "therubyracer-heroku", "0.8.1.pre3"
+#end
 
 group :development do
   gem "pry-rails"
