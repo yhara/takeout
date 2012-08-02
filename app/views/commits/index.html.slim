@@ -4,14 +4,14 @@ table
   tr
     th
     th Log
-    th Status
+    th Notes
     th Commited at
 
   - @commits.each do |commit|
     tr
-      td = link_to commit.key, commit
-      td = commit.log.lines.first
-      td = commit.status
-      td = commit.commited_at
+      td= link_to commit.key, commit
+      td= commit.log.lines.first
+      td= link_to commit.notes.size, commit_path(commit, anchor: "notes")
+      td= commit.commited_at
       //td = link_to 'Edit', edit_commit_path(commit)
       //td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete
