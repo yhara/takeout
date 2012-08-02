@@ -4,15 +4,16 @@ table
   tr
     th
     th Log
-    th Notes
     th Status
     th Commited at
 
   - @commits.each do |commit|
     tr
-      td= link_to commit.key, commit
+      td
+        = link_to commit.key, commit
+        '
+        = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
       td= commit.log.lines.first
-      td= link_to commit.notes.size, commit_path(commit, anchor: "notes")
       td= commit.status || "(new)"
       td= commit.commited_at
       //td = link_to 'Edit', edit_commit_path(commit)

@@ -4,6 +4,8 @@ p#notice = notice
 
 h2.commit_key
   = @commit.key
+  span.status (#{@commit.status || "new"})
+  
 
 .n_notes
   = link_to "#{@notes.length} note(s)", "#notes"
