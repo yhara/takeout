@@ -1,7 +1,7 @@
 Takeout::Application.routes.draw do
-  resources :notes
-
-  resources :commits
+  resources :commits do
+    resources :notes
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
