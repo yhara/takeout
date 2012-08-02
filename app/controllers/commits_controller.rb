@@ -2,7 +2,7 @@ class CommitsController < ApplicationController
   # GET /commits
   # GET /commits.json
   def index
-    @commits = Commit.all
+    @commits = Commit.order("key DESC")
 
     respond_to do |format|
       format.html # index.html.erb
