@@ -1,3 +1,5 @@
+require 'repository'
+
 namespace :commits do
   desc "Fetch new commits (if any)"
   task :update => :environment do
