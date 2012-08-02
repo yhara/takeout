@@ -2,7 +2,7 @@ p#notice = notice
 
 = link_to 'Back', commits_path
 
-h3
+h2
   = @commit.key
 
 p
@@ -13,5 +13,20 @@ p
 
 p
   pre= @commit.diff
+
+h3 Notes
+
+
+= form_for @note do |f|
+  - if @note.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
+      ul
+        - @note.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.text_area :body, cols: 100
+  .actions = f.submit 'Add Note'
 
 = link_to 'Back', commits_path

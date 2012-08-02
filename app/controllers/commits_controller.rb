@@ -14,6 +14,7 @@ class CommitsController < ApplicationController
   # GET /commits/1.json
   def show
     @commit = Commit.find(params[:id])
+    @note = Note.new
 
     respond_to do |format|
       format.html # show.html.erb
