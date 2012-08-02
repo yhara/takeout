@@ -14,7 +14,7 @@ class CommitsController < ApplicationController
   # GET /commits/1.json
   def show
     @commit = Commit.find(params[:id])
-    @notes = @commit.notes.order("created_at DESC")
+    @notes = @commit.notes.order("created_at")
     @note = Note.new
 
     respond_to do |format|
