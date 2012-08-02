@@ -1,3 +1,6 @@
 class Note < ActiveRecord::Base
-  attr_accessible :body, :commit_id
+  belongs_to :commit
+  attr_accessible :body
+
+  validates_presence_of :commit_id
 end

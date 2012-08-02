@@ -16,17 +16,26 @@ p
 
 h3 Notes
 
+#notes
+  ul
+    - @notes.each do |note|
+      li.note
+        .note_date (#{note.created_at})
+        .note_body
+          = format_note_body(note.body)
 
-= form_for @note do |f|
-  - if @note.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
-      ul
-        - @note.errors.full_messages.each do |message|
-          li = message
+    li
+      | (new note)
+      = form_for [@commit, @note] do |f|
+        - if @note.errors.any?
+          #error_explanation
+            h2 = "#{pluralize(@note.errors.count, "error")} prohibited this note from being saved:"
+            ul
+              - @note.errors.full_messages.each do |message|
+                li = message
 
-  .field
-    = f.text_area :body, cols: 100
-  .actions = f.submit 'Add Note'
+        .field
+          = f.text_area :body, cols: 100
+        .actions = f.submit 'Add Note'
 
 = link_to 'Back', commits_path
