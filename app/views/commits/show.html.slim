@@ -1,18 +1,17 @@
 p#notice = notice
 
+= link_to 'Back', commits_path
+
 h3
-  = "r#{@commit.key}"
-  small (#{@commit.commited_at})
+  = @commit.key
 
 p
-  strong Status:
-  = @commit.status
+  = @commit.commited_at
+
 p
   pre= @commit.log
+
 p
-  strong Diff:
   pre= @commit.diff
 
-= link_to 'Edit', edit_commit_path(@commit)
-'|
 = link_to 'Back', commits_path
