@@ -1,0 +1,8 @@
+module Takeout
+  class Conf
+    # Absolute path to your working copy
+    def self.repos_dir
+      "#{Rails.root}/repos/some-svn-project"
+    end
+  end
+end
