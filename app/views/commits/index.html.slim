@@ -15,6 +15,6 @@ table
         = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
       td= commit.log.lines.first
       td= commit.status || "(new)"
-      td= commit.commited_at
+      td= zone(commit.commited_at)
       //td = link_to 'Edit', edit_commit_path(commit)
       //td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete

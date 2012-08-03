@@ -3,5 +3,6 @@ module Takeout
     basic_auth_name: "takeout",  # set nil for no auth
     basic_auth_pass: "abcd1234",
     repos_url: "http://svn.example.jp/svn/",
+    time_zone: 'Tokyo',  # see also: rake time:zones:all
   }
 end
