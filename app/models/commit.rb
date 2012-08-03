@@ -1,6 +1,6 @@
 class Commit < ActiveRecord::Base
   has_many :notes
-  attr_accessible :commited_at, :diff, :key, :log, :status
+  attr_accessible :commited_at, :diff, :key, :log, :status, :author
 
   validates :key, uniqueness: true
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120803071649) do
+ActiveRecord::Schema.define(:version => 20120803081835) do
 
   create_table "commits", :force => true do |t|
     t.string   "key"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120803071649) do
     t.datetime "commited_at"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.string   "author"
   end
 
   create_table "notes", :force => true do |t|

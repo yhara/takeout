@@ -9,9 +9,13 @@ h2.commit_key
 
 .n_notes
   = link_to "#{@notes.length} note(s)", "#notes"
+  '
+  = link_to "Add note", "#add_note"
 
-.commit_date
-  = zone(@commit.commited_at)
+.commit_info
+  = @commit.author
+  '
+  = "(#{zone(@commit.commited_at)}):"
 
 .commit_log
   pre= @commit.log
@@ -32,6 +36,7 @@ a name="notes"
         br
 
     li
+      a name="add_note"
       | (#{zone Time.now})
       = form_for [@commit, @note] do |f|
         - if @note.errors.any?

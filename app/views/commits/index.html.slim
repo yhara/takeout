@@ -4,6 +4,7 @@ table
   tr
     th
     th Status
+    th Author
     th Log
     th Commited at
 
@@ -14,6 +15,8 @@ table
         '
         = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
       td= commit.status || "(new)"
+
+      td= commit.author
       td= commit.log.lines.first
       td= zone(commit.commited_at)
       //td = link_to 'Edit', edit_commit_path(commit)

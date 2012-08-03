@@ -14,7 +14,7 @@ namespace :commits do
     Commit.order("created_at DESC").each do |commit|
       Commit.transaction do
         newc = repos.fetch_commit(commit.key).attributes
-        %w(log diff commited_at).each do |k|
+        %w(log diff commited_at author).each do |k|
           commit.send("#{k}=", newc[k])
         end
         p commit.save!
