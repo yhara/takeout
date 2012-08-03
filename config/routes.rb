@@ -1,6 +1,6 @@
 Takeout::Application.routes.draw do
   resources :commits, only: [:index, :show] do
-    resources :notes
+    resources :notes, only: [:create]
   end
 
   root to: redirect('/commits')
