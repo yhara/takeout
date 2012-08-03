@@ -1,0 +1,23 @@
+Takeout
+=======
+
+Takeout is a simple review tool made with Ruby on Rails.
+
+Features
+--------
+
+TODO
+
+License
+=======
+
+MIT
+
+Contact
+=======
+
+https://github.com/yhara/takeout
+
+Yutaka HARA (yhara)
+
+twitter: @yhara_en
