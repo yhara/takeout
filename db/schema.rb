@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720101409) do
+ActiveRecord::Schema.define(:version => 20120803071649) do
 
   create_table "commits", :force => true do |t|
     t.string   "key"
-    t.string   "log"
-    t.string   "diff"
+    t.text     "log",         :limit => 1024
+    t.text     "diff",        :limit => 65535
     t.string   "status"
     t.datetime "commited_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   create_table "notes", :force => true do |t|
