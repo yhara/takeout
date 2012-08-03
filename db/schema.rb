@@ -22,7 +22,10 @@ ActiveRecord::Schema.define(:version => 20120803081835) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.string   "author"
+    t.string   "slug"
   end
+
+  add_index "commits", ["slug"], :name => "index_commits_on_slug", :unique => true
 
   create_table "notes", :force => true do |t|
     t.integer  "user_id"

@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  key: MyString
+  key: r100
   log: MyString
   diff: MyString
   status: MyString
+  slug: r100
   commited_at: 2012-07-20 19:13:26
 
 two:
-  key: MyString
+  key: r101
   log: MyString
   diff: MyString
   status: MyString
+  slug: r101
   commited_at: 2012-07-20 19:13:26

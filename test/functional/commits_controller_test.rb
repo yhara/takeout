@@ -18,7 +18,7 @@ class CommitsControllerTest < ActionController::TestCase
 
   test "should create commit" do
     assert_difference('Commit.count') do
-      post :create, commit: { commited_at: @commit.commited_at, diff: @commit.diff, key: @commit.key, log: @commit.log, status: @commit.status }
+      post :create, commit: { commited_at: @commit.commited_at, diff: @commit.diff, key: "r100new", log: @commit.log, status: @commit.status }
     end
 
     assert_redirected_to commit_path(assigns(:commit))
