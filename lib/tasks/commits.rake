@@ -5,7 +5,8 @@ namespace :commits do
   task :update => :environment do
     repos = Repository::SvnRepos.new(Takeout::Conf[:repos_url])
     repos.fetch_commits do |commit|
-      p commit.save!
+      commit.save!
+      p commit
     end
   end
 
@@ -17,7 +18,8 @@ namespace :commits do
         %w(log diff commited_at author).each do |k|
           commit.send("#{k}=", newc[k])
         end
-        p commit.save!
+        commit.save!
+        p commit
       end
     end
   end
