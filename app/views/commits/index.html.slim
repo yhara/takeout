@@ -3,8 +3,8 @@ h2 Listing commits
 table
   tr
     th
-    th Log
     th Status
+    th Log
     th Commited at
 
   - @commits.each do |commit|
@@ -13,8 +13,8 @@ table
         = link_to commit.key, commit
         '
         = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
-      td= commit.log.lines.first
       td= commit.status || "(new)"
+      td= commit.log.lines.first
       td= zone(commit.commited_at)
       //td = link_to 'Edit', edit_commit_path(commit)
       //td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete
