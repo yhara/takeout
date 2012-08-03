@@ -3,6 +3,8 @@ Takeout::Application.routes.draw do
     resources :notes
   end
 
+  root to: redirect('/commits')
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
