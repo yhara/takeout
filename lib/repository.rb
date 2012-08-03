@@ -32,7 +32,7 @@ class Repository
       rev = key[/\d+/].to_i
       diff = get_svn_diff(rev)
       log = get_svn_log(rev)
-      message = log.lines.to_a[3..-3].join
+      message = log.lines.to_a[3..-2].join
       commited_at = DateTime.parse(log.lines.to_a[1].split(/\|/)[2])
 
       return Commit.new(key: "r#{rev}",
