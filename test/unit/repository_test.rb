@@ -50,7 +50,7 @@ Index: hello
       commit = @repos.fetch_commit("r3")
 
       assert_equal "r3", commit.key
-      assert_equal "foo\n\nbar\n", commit.log
+      assert_equal "foo\n\nbar", commit.log
       assert_equal diff, commit.diff
       assert_equal DateTime.parse("2012-07-21 22:51:31 +0900"), commit.commited_at
     end
