@@ -1,9 +1,9 @@
 class Commit < ActiveRecord::Base
   extend FriendlyId
+  friendly_id :key
 
   has_many :notes
   attr_accessible :commited_at, :diff, :key, :log, :status, :author
-  friendly_id :key, use: :slugged
 
   validates :key, uniqueness: true
 
