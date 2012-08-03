@@ -4,7 +4,7 @@ namespace :commits do
   desc "Fetch new commits (if any)"
   task :update => :environment do
     repos = Repository::SvnRepos.new(Takeout::Conf[:repos_url])
-    repos.fetch_commits.each do |commit|
+    repos.fetch_commits do |commit|
       p commit.save!
     end
   end

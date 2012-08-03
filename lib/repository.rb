@@ -14,8 +14,7 @@ class Repository
   end
 
   class SvnRepos < Repository
-    # Retuns an array of Commit (old one first)
-    def fetch_commits
+    def fetch_commits(&block)
       next_rev = if (last_commit = Commit.order("created_at DESC").first)
                    last_commit.key[/\d+/].to_i + 1
                  else
@@ -23,9 +22,9 @@ class Repository
                  end
 
       revs = (next_rev..get_latest_rev).to_a.last(MAX_FETCH)
-      return revs.map{|rev|
-        fetch_commit("r#{rev}")
-      }
+      revs.each do |rev|
+        yield fetch_commit("r#{rev}")
+      end
     end
 
     def fetch_commit(key)
