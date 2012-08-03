@@ -1,18 +1,16 @@
 class Repository
   MAX_FETCH = 20
 
-  def initialize(dir)
-    @dir = dir
+  def initialize(url)
+    @url = url
   end
 
   def command(_cmd)
-    return Dir.chdir(@dir) do
-      cmd = "#{_cmd} 2>&1"
-      Rails.logger.info "- executing command: #{cmd.inspect}"
-      ret = `#{cmd}`
-      Rails.logger.debug "- result: " + ret.inspect
-      ret
-    end
+    cmd = "#{_cmd} 2>&1"
+    Rails.logger.info "- executing command: #{cmd.inspect}"
+    ret = `#{cmd}`
+    Rails.logger.debug "  result: " + ret.inspect
+    ret
   end
 
   class SvnRepos < Repository
@@ -23,10 +21,8 @@ class Repository
                  else
                    1
                  end
-      command("svn up")
-      latest_rev = command("svn info")[/Revision: (\d+)/, 1].to_i
 
-      revs = (next_rev..latest_rev).to_a.last(MAX_FETCH)
+      revs = (next_rev..get_latest_rev).to_a.last(MAX_FETCH)
       return revs.map{|rev|
         fetch_commit("r#{rev}")
       }
@@ -34,8 +30,8 @@ class Repository
 
     def fetch_commit(key)
       rev = key[/\d+/].to_i
-      diff = svn_diff(rev)
-      log = svn_log(rev)
+      diff = get_svn_diff(rev)
+      log = get_svn_log(rev)
       message = log.lines.to_a[3..-3].join
       commited_at = DateTime.parse(log.lines.to_a[1].split(/\|/)[2])
 
@@ -46,15 +42,25 @@ class Repository
     end
 
     private
-    def svn_log(rev)
-      command("svn log -r #{rev}") #.lines.to_a[3..-3].join
+
+    def get_latest_rev
+      rev_s = command("svn info #{@url}")[/Revision: (\d+)/, 1]
+      if rev_s
+        rev_s.to_i
+      else
+        raise "Failed to get latest revision from svn info"
+      end
     end
 
-    def svn_diff(rev)
+    def get_svn_log(rev)
+      command("svn log -r #{rev} #{@url}")
+    end
+
+    def get_svn_diff(rev)
       if rev == 1
         "[Sorry, Takeout cannot show diff of r1]"
       else
-        command("svn diff -r #{rev-1}:#{rev}")
+        command("svn diff -r #{rev-1}:#{rev} #{@url}")
       end
     end
   end

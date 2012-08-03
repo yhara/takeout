@@ -1,8 +1,7 @@
 module Takeout
   class Conf
-    # Absolute path to your working copy
-    def self.repos_dir
-      "#{Rails.root}/repos/some-svn-project"
+    def self.repos_url
+      "http://svn.example.jp/svn/"
     end
   end
 end
