@@ -16,7 +16,7 @@ class Repository
   class SvnRepos < Repository
     # Retuns an array of Commit (old one first)
     def fetch_commits
-      next_rev = if (last_commit = Commit.order("key DESC").first)
+      next_rev = if (last_commit = Commit.order("created_at DESC").first)
                    last_commit.key[/\d+/].to_i + 1
                  else
                    1

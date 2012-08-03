@@ -11,7 +11,7 @@ namespace :commits do
 
   task :reget => :environment do
     repos = Repository::SvnRepos.new(Takeout::Conf[:repos_url])
-    Commit.order("key DESC").each do |commit|
+    Commit.order("created_at DESC").each do |commit|
       Commit.transaction do
         newc = repos.fetch_commit(commit.key).attributes
         %w(log diff commited_at).each do |k|
