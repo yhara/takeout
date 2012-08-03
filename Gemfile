@@ -56,4 +56,5 @@ end
 group :test do
   gem "test-unit", ">= 2.5.1"
   gem "shoulda-context"
+  gem "mocha", require: false
 end
