@@ -1,5 +1,5 @@
 Takeout::Application.routes.draw do
-  resources :commits do
+  resources :commits, only: [:index, :show] do
     resources :notes
   end
 
