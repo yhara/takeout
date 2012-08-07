@@ -2,48 +2,14 @@ require 'test_helper'
 
 class NotesControllerTest < ActionController::TestCase
   setup do
-    @note = notes(:one)
-  end
-
-  test "should get index" do
-    get :index
-    assert_response :success
-    assert_not_nil assigns(:notes)
-  end
-
-  test "should get new" do
-    get :new
-    assert_response :success
+    @commit = commits(:one)
   end
 
   test "should create note" do
     assert_difference('Note.count') do
-      post :create, note: { body: @note.body, commit_id: @note.commit_id, user_id: @note.user_id }
+      post :create, commit_id: @commit.id, note: { body: "hello" }
     end
 
-    assert_redirected_to note_path(assigns(:note))
-  end
-
-  test "should show note" do
-    get :show, id: @note
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @note
-    assert_response :success
-  end
-
-  test "should update note" do
-    put :update, id: @note, note: { body: @note.body, commit_id: @note.commit_id, user_id: @note.user_id }
-    assert_redirected_to note_path(assigns(:note))
-  end
-
-  test "should destroy note" do
-    assert_difference('Note.count', -1) do
-      delete :destroy, id: @note
-    end
-
-    assert_redirected_to notes_path
+    assert_redirected_to @commit
   end
 end
