@@ -5,7 +5,6 @@ one:
   log: MyString
   diff: MyString
   status: MyString
-  slug: r100
   commited_at: 2012-07-20 19:13:26
 
 two:
@@ -13,5 +12,4 @@ two:
   log: MyString
   diff: MyString
   status: MyString
-  slug: r101
   commited_at: 2012-07-20 19:13:26
