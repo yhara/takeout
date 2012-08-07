@@ -8,9 +8,15 @@ class Commit < ActiveRecord::Base
   validates :key, uniqueness: true
 
   def update_status!(note_body)
-    if (newstat = note_body.lines.first[/^#(.*)/, 1])
+    if (newstat = extract_status(note_body))
       self.status = newstat
       self.save!
     end
+  end
+
+  private
+  def extract_status(body)
+    first_line = body.lines.first
+    return first_line[/^#(.+)|/, 1] || first_line[/^(@\S+)/, 1]
   end
 end
