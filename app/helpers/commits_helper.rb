@@ -6,4 +6,17 @@ module CommitsHelper
   def zone(datetime)
     datetime.in_time_zone(Takeout::Conf[:time_zone])
   end
+
+  def highlight_diff(diff)
+    diff.lines.map{|line|
+      case line
+      when /^-/
+        content_tag(:span, line, class: "diff_minus")
+      when /^\+/ 
+        content_tag(:span, line, class: "diff_plus")
+      else
+        h line
+      end
+    }.join
+  end
 end

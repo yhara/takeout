@@ -21,7 +21,7 @@ h2.commit_key
   pre= @commit.log
 
 .commit_diff
-  pre= @commit.diff
+  pre== highlight_diff(@commit.diff)
 
 h3 Notes
 a name="notes"
