@@ -4,14 +4,12 @@ class NotesController < ApplicationController
     @note = Note.new(params[:note])
     @note.commit = @commit
 
-    respond_to do |format|
-      if @note.save
-        @commit.update_status!(@note.body)
+    if @note.save
+      @commit.update_status!(@note.body)
 
-        redirect_to @commit, notice: 'Note was successfully created.'
-      else
-        render action: "new"
-      end
+      redirect_to @commit, notice: 'Note was successfully created.'
+    else
+      redirect_to @commit
     end
   end
 end
