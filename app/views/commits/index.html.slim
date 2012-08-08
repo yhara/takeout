@@ -3,6 +3,7 @@ h2 Listing commits
 table
   tr
     th
+    th
     th Status
     th Author
     th Log
@@ -10,10 +11,8 @@ table
 
   - @commits.each do |commit|
     tr
-      td
-        = link_to commit.key, commit
-        '
-        = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
+      td= link_to commit.key, commit
+      td= link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
       td== highlight_status(commit.status)
 
       td= commit.author
