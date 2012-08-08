@@ -1,6 +1,23 @@
 class Repository
   MAX_FETCH = 20
 
+  # Execute block with exclusive lock.
+  # Return false if already locked. 
+  def self.lock(&block)
+    @lock_file ||= File.open("#{Rails.root}/tmp/repos.lock", "w")
+
+    if @lock_file.flock(File::LOCK_EX | File::LOCK_NB)
+      begin
+        block.call
+      ensure
+        @lock_file.flock(File::LOCK_UN)
+      end
+      return true
+    else
+      return false
+    end
+  end
+
   def initialize(url)
     @url = url
   end
@@ -14,17 +31,21 @@ class Repository
   end
 
   class SvnRepos < Repository
+    # Return false if failed to get lock (i.e. someone's already
+    # fetching commits elsewhere)
     def fetch_commits(&block)
-      next_rev = if (last_commit = Commit.order("created_at DESC").first)
-                   last_commit.key[/\d+/].to_i + 1
-                 else
-                   1
-                 end
+      Repository.lock{
+        next_rev = if (last_commit = Commit.order("created_at DESC").first)
+                     last_commit.key[/\d+/].to_i + 1
+                   else
+                     1
+                   end
 
-      revs = (next_rev..get_latest_rev).to_a.last(MAX_FETCH)
-      revs.each do |rev|
-        yield fetch_commit("r#{rev}")
-      end
+        revs = (next_rev..get_latest_rev).to_a.last(MAX_FETCH)
+        revs.each do |rev|
+          yield fetch_commit("r#{rev}")
+        end
+      }
     end
 
     def fetch_commit(key)

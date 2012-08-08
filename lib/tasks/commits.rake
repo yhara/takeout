@@ -4,10 +4,10 @@ namespace :commits do
   desc "Fetch new commits (if any)"
   task :update => :environment do
     repos = Repository::SvnRepos.new(Takeout::Conf[:repos_url])
-    repos.fetch_commits do |commit|
+    repos.fetch_commits{|commit|
       commit.save!
       p commit
-    end
+    } or puts "Failed to get lock. Someone is doing update"
   end
 
   task :reget => :environment do

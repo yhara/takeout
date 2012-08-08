@@ -13,6 +13,8 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
 
+tmp/cache
+tmp/restart.txt
 config/initializers/takeout_config.rb
+
