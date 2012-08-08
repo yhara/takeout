@@ -1,8 +1,21 @@
 module Takeout
   Conf = {
+    # Authentication
     basic_auth_name: "takeout",  # set nil for no auth
     basic_auth_pass: "abcd1234",
+
+    # Repository
     repos_url: "http://svn.example.jp/svn/",
+
+    # Views
+    status_default: "(new)",
+    status_colors: {
+      "(new)" => "red",
+      "ok" => "#00FF00",
+      /^@/ => "orange",
+    },
+
+    # Misc
     time_zone: 'Tokyo',  # see also: rake time:zones:all
   }
 end

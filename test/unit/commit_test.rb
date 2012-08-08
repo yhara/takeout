@@ -1,6 +1,11 @@
 require 'test_helper'
 
 class CommitTest < ActiveSupport::TestCase
+  test "should set default status" do
+    c = Commit.create!(key: "r1")
+    assert_equal Takeout::Conf[:status_default], c.status
+  end
+
   test "update_status! updates status from given note body" do
     c = Commit.create!(key: "r1")
 
