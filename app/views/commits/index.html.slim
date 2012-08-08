@@ -13,7 +13,7 @@ table
     tr
       td= link_to commit.key, commit
       td= link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
-      td== highlight_status(commit.status)
+      td= link_to highlight_status(commit.status), commit
 
       td= commit.author
       td= commit.log.lines.first
