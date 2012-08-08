@@ -14,7 +14,7 @@ table
         = link_to commit.key, commit
         '
         = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
-      td= commit.status || "(new)"
+      td== highlight_status(commit.status)
 
       td= commit.author
       td= commit.log.lines.first

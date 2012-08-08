@@ -19,4 +19,12 @@ module CommitsHelper
       end
     }.join
   end
+
+  def highlight_status(stat)
+    if (found = Takeout::Conf[:status_colors].find{|pat, col| pat === stat})
+      content_tag(:font, stat, color: found[1])
+    else
+      h stat
+    end
+  end
 end
