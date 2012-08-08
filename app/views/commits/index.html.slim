@@ -10,13 +10,17 @@ table
     th Commited at
 
   - @commits.each do |commit|
-    tr
-      td= link_to commit.key, commit
-      td= link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
-      td= link_to highlight_status(commit.status), commit
+    - if commit
+      tr
+        td= link_to commit.key, commit
+        td= link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
+        td= link_to highlight_status(commit.status), commit
 
-      td= commit.author
-      td= commit.log.lines.first
-      td= zone(commit.commited_at)
-      //td = link_to 'Edit', edit_commit_path(commit)
-      //td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete
+        td= commit.author
+        td= commit.log.lines.first
+        td= zone(commit.commited_at)
+        //td = link_to 'Edit', edit_commit_path(commit)
+        //td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete
+    - else
+      tr
+        td &nbsp;
