@@ -13,4 +13,8 @@ html
   body
     h1= link_to "Takeout", commits_path
 
+    p#error= flash[:error]
+    p#alert= flash[:alert]
+    p#notice= flash[:notice]
+
     == yield
