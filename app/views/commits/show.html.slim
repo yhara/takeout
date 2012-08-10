@@ -49,6 +49,7 @@ a name="notes"
         .field
           = f.text_area :body, cols: 100
         .field
+          ' Name:
           = text_field_tag :name, @name
         .actions
           = f.submit 'Add Note'
