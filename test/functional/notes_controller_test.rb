@@ -10,6 +10,6 @@ class NotesControllerTest < ActionController::TestCase
       post :create, commit_id: @commit.id, note: { body: "hello" }
     end
 
-    assert_redirected_to @commit
+    assert_redirected_to commits_path
   end
 end
