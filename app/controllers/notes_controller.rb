@@ -3,7 +3,10 @@ class NotesController < ApplicationController
     @commit = Commit.find(params[:commit_id])
     @note = Note.new(params[:note])
     @note.commit = @commit
-    @note.set_name(params[:name])
+    if (name = params[:name])
+      @note.set_name(name)
+      cookies[:author_name] = name 
+    end
 
     if @note.save
       @commit.update_status!(@note.body)

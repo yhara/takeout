@@ -11,5 +11,7 @@ class CommitsController < ApplicationController
     @commit = Commit.find(params[:id])
     @notes = @commit.notes.order("created_at")
     @note = Note.new
+
+    @name = cookies[:author_name]
   end
 end
