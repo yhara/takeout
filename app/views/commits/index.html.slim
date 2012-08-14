@@ -1,26 +1,31 @@
 h2 Listing commits
 
-table
+table#commits
   tr
-    th
-    th
-    th Status
-    th Author
-    th Log
-    th Commited at
+    th#key
+    th#notes
+    th#status      Status
+    th#author      Author
+    th#log         Log
+    th#commited_at Commited at
 
   - @commits.each do |commit|
     - if commit
       tr
-        td= link_to commit.key, commit
-        td= link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
-        td= link_to highlight_status(commit.status), commit
+        td.key
+          = link_to commit.key, commit
+        td.notes
+          = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
+        td.status
+          = link_to highlight_status(commit.status), commit
 
-        td= commit.author
-        td= commit.log.lines.first
-        td= zone(commit.commited_at)
-        //td = link_to 'Edit', edit_commit_path(commit)
-        //td = link_to 'Destroy', commit, :confirm => 'Are you sure?', :method => :delete
+        td.author
+          = commit.author
+        td.log
+          = commit.log.lines.first
+        td.commited_at
+          = zone(commit.commited_at)
+
     - else
       tr
         td 
