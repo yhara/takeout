@@ -40,10 +40,13 @@ class Repository
                    else
                      1
                    end
+        Rails.logger.info "Next revision: #{next_rev}"
 
         revs = (next_rev..get_latest_rev).to_a.last(MAX_FETCH)
         revs.each do |rev|
-          yield fetch_commit("r#{rev}")
+          if (commit = fetch_commit("r#{rev}"))
+            yield commit
+          end
         end
       }
     end
@@ -51,6 +54,10 @@ class Repository
     def fetch_commit(key)
       rev = key[/\d+/].to_i
       diff = get_svn_diff(rev)
+      if diff.empty?
+        Rails.logger.info "Got empty diff for #{key}. Skipping"
+        return nil
+      end
       log = get_svn_log(rev)
       message = log.lines.to_a[3..-2].join.strip
       author = log.lines.to_a[1].split(/\|/)[1].strip
