@@ -9,9 +9,14 @@ class Commit < ActiveRecord::Base
 
   before_save :set_default_status
 
-  def update_status!(note_body)
+  def update_status!(note_body, name=nil)
     if (newstat = extract_status(note_body))
-      self.status = newstat
+      if name
+        self.status = "#{newstat} (#{name})"
+      else
+        self.status = newstat
+      end
+
       self.save!
     end
   end

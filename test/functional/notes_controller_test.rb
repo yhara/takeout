@@ -17,12 +17,14 @@ class NotesControllerTest < ActionController::TestCase
 
   test "should create note with name" do
     assert_difference('Note.count') do
-      post :create, commit_id: @commit.id, note: { body: "hello" }, name: "taro"
+      body = "#foo\n\nhello"
+      post :create, commit_id: @commit.id, note: { body: body }, name: "taro"
     end
 
     assert_redirected_to commits_path
 
-    assert_equal "hello\n\n-- taro", Note.last.body
+    assert_equal "#foo\n\nhello\n\n-- taro", Note.last.body
+    assert_equal "foo (taro)", @commit.reload.status
     assert_equal "taro", cookies[:author_name]
   end
 end

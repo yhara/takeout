@@ -9,7 +9,7 @@ class NotesController < ApplicationController
     end
 
     if @note.save
-      @commit.update_status!(@note.body)
+      @commit.update_status!(@note.body, name)
 
       redirect_to commits_path, notice: 'Note was successfully created.'
     else

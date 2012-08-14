@@ -11,7 +11,7 @@ module Takeout
     status_default: "(new)",
     status_colors: {
       "(new)" => "red",
-      "ok" => "#00FF00",
+      /^ok/ => "#00FF00",
       /^@/ => "orange",
     },
 
