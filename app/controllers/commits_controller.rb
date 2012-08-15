@@ -3,7 +3,7 @@ class CommitsController < ApplicationController
     @commits = Commit.order("created_at DESC")
       .chunk{|c| c.commited_at.to_date}
       .flat_map{|date, commits|
-        commits + [nil]
+        [date] + commits
       }
   end
 

@@ -9,34 +9,25 @@ table#commits
     th#log         Log
     th#commited_at Commited at
 
-  - @commits.each do |commit|
-    - if commit
+  - @commits.each do |item|
+    - case item
+    - when Commit
       tr
         td.key
-          = link_to commit.key, commit
+          = link_to item.key, item
         td.notes
-          = link_to "(#{commit.notes.size} notes)", commit_path(commit, anchor: "notes")
+          = link_to "(#{item.notes.size} notes)", commit_path(item, anchor: "notes")
         td.status
-          = link_to highlight_status(commit.status), commit
+          = link_to highlight_status(item.status), item
 
         td.author
-          = commit.author
+          = item.author
         td.log
-          = commit.log.lines.first
+          = item.log.lines.first
         td.commited_at
-          = zone(commit.commited_at)
+          = zone(item.commited_at)
 
-    - else
+    - when Date
       tr
-        td 
-          hr
-        td
-          hr
-        td
-          hr
-        td
-          hr
-        td
-          hr
-        td
-          hr
+        td colspan='6'
+          b= item.strftime("%Y-%m-%d (%a)")
