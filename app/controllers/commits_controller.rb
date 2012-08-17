@@ -1,6 +1,14 @@
 class CommitsController < ApplicationController
   def index
-    @commits = Commit.order("created_at DESC")
+    @default_status = Takeout::Conf[:status_default]
+    if params[:view] == "new"
+      commits = Commit.order("created_at DESC")
+                      .where(status: @default_status)
+    else
+      commits = Commit.order("created_at DESC")
+    end
+
+    @commits = commits
       .chunk{|c| c.commited_at.to_date}
       .flat_map{|date, commits|
         [date] + commits
