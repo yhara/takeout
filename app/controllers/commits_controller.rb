@@ -5,6 +5,10 @@ class CommitsController < ApplicationController
       .flat_map{|date, commits|
         [date] + commits
       }
+
+    if (name = cookies[:author_name])
+      @mentions = Commit.where("status LIKE ?", "@#{name}%").all
+    end
   end
 
   def show

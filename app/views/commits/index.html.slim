@@ -1,3 +1,23 @@
+- if @mentions.size > 0
+  h2 Mentions to you
+
+  table
+    - @mentions.each do |item|
+      tr
+        td.key
+          = link_to item.key, item
+        td.notes
+          = link_to "(#{item.notes.size} notes)", commit_path(item, anchor: "notes")
+        td.status
+          = link_to highlight_status(item.status), item
+
+        td.author
+          = item.author
+        td.log
+          = item.log.lines.first
+        td.commited_at
+          = zone(item.commited_at)
+
 h2 Listing commits
 
 table#commits
