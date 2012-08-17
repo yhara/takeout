@@ -5,7 +5,7 @@ class NotesController < ApplicationController
     @note.commit = @commit
     if (name = params[:name])
       @note.set_name(name)
-      cookies[:author_name] = name 
+      cookies[:author_name] = {value: name, expires: 1.year.from_now}
     end
 
     if @note.save
