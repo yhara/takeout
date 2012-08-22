@@ -12,6 +12,8 @@ class CommitsController < ApplicationController
 
     if (name = cookies[:author_name])
       @mentions = Commit.where("status LIKE ?", "@#{name}%").all
+    else
+      @mentions = []
     end
   end
 
