@@ -22,6 +22,7 @@ class CommitTest < ActiveSupport::TestCase
     c1 = Commit.create!(key: "r1")
     c2 = Commit.create!(key: "r2")
     c3 = Commit.create!(key: "r3")
+    n = Note.new; n.commit = c2; n.save!
     n = Note.new; n.commit = c3; n.save!
     n = Note.new; n.commit = c2; n.save!
 

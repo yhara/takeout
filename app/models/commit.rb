@@ -13,7 +13,7 @@ class Commit < ActiveRecord::Base
   scope :recent_commented,
         select("DISTINCT commits.id, commits.*")
         .joins("LEFT OUTER JOIN notes ON commits.id = notes.commit_id")
-        .order("max(notes.created_at) desc", "commits.key desc")
+        .order("notes.created_at desc", "commits.key desc")
 
   def update_status!(note_body, name=nil)
     if (newstat = extract_status(note_body))
