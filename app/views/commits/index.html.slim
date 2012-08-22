@@ -23,6 +23,8 @@ h2 Listing commits
 p
   = link_to "all", commits_path
   '
+  = link_to "updated", commits_path(view: "updated")
+  '
   = link_to @default_status, commits_path(view: "new")
 
 table#commits
