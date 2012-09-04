@@ -89,7 +89,7 @@ class Repository
       if rev == 1
         "[Sorry, Takeout cannot show diff of r1]"
       else
-        command("svn diff -r #{rev-1}:#{rev} #{@url}").truncate(Conf[:max_diff_size])
+        command("svn diff -r #{rev-1}:#{rev} #{@url}").truncate(Takeout::Conf[:max_diff_size])
       end
     end
   end
