@@ -6,6 +6,7 @@ module Takeout
 
     # Repository
     repos_url: "http://svn.example.jp/svn/",
+    max_diff_size: 1024 * 5,
 
     # Views
     status_default: "(new)",

@@ -26,7 +26,7 @@ class Repository
     cmd = "#{_cmd} 2>&1"
     Rails.logger.info "- executing command: #{cmd.inspect}"
     ret = `#{cmd}`
-    Rails.logger.debug "  result: " + ret.inspect
+    Rails.logger.debug "  result: " + ret.truncate(1000).inspect
     ret
   end
 
@@ -89,7 +89,7 @@ class Repository
       if rev == 1
         "[Sorry, Takeout cannot show diff of r1]"
       else
-        command("svn diff -r #{rev-1}:#{rev} #{@url}")
+        command("svn diff -r #{rev-1}:#{rev} #{@url}").truncate(Conf[:max_diff_size])
       end
     end
   end
